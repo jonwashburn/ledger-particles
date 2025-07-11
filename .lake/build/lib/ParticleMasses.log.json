@@ -1,0 +1,11 @@
+{"log":
+ [{"message":
+   ".> LEAN_PATH=././.lake/packages/batteries/.lake/build/lib:././.lake/packages/Qq/.lake/build/lib:././.lake/packages/aesop/.lake/build/lib:././.lake/packages/proofwidgets/.lake/build/lib:././.lake/packages/Cli/.lake/build/lib:././.lake/packages/importGraph/.lake/build/lib:././.lake/packages/mathlib/.lake/build/lib:././.lake/build/lib DYLD_LIBRARY_PATH=././.lake/build/lib /Users/jonathanwashburn/.elan/toolchains/leanprover--lean4---v4.8.0/bin/lean ././././ParticleMasses.lean -R ./././. -o ././.lake/build/lib/ParticleMasses.olean -i ././.lake/build/lib/ParticleMasses.ilean -c ././.lake/build/ir/ParticleMasses.c --json",
+   "level": "trace"},
+  {"message": "././././ParticleMasses.lean:105:8: declaration uses 'sorry'",
+   "level": "warning"},
+  {"message": "././././ParticleMasses.lean:148:8: declaration uses 'sorry'",
+   "level": "warning"},
+  {"message": "././././ParticleMasses.lean:156:8: declaration uses 'sorry'",
+   "level": "warning"}],
+ "depHash": "8856682445884623938"}
