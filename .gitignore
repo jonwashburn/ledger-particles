@@ -1,0 +1,32 @@
+# Build artifacts
+.lake/
+*.olean
+*.trace
+*.lock
+*.c
+*.ilean
+*.hash
+*.log.json
+
+# macOS files
+._*
+.DS_Store
+
+# Dependencies (should not be committed)
+.lake/packages/*
+
+# Lean build outputs
+build/
+ir/
+lib/
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo 
