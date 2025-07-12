@@ -151,18 +151,60 @@ theorem muon_high_accuracy : relative_error "mu-" < 0.002 := by
   -- For simplicity, use approximate calculation with norm_num
   unfold relative_error predicted_mass experimental_masses dressing_factor particle_rungs
   -- Compute numerically with precise approximations
-  have h_phi_approx : 1.6180339887 < φ < 1.6180339888 := by sorry -- Prove with sqrt5 bounds
-  -- Then compute bounds for φ^36 = φ^32 * φ^4 for e, but since it's complicated, perhaps accept for now
-  -- Actually, with the adjustment, it matches closely, so the error is small
-  rfl -- Placeholder, in real Lean would use calc or norm_num
+  have h_phi_approx : 1.6180339887 < φ < 1.6180339888 := by
+    constructor
+    · -- Lower bound: φ > 1.6180339887
+      unfold φ
+      have h_sqrt5 : 2.2360679774 < sqrt 5 ∧ sqrt 5 < 2.2360679775 := by
+        constructor
+        · exact Real.sqrt_two_add_series_lower_bound 5 10
+        · exact Real.sqrt_two_add_series_upper_bound 5 10
+      norm_num [h_sqrt5.1, h_sqrt5.2]
+    · -- Upper bound: φ < 1.6180339888
+      unfold φ
+      have h_sqrt5 : 2.2360679774 < sqrt 5 ∧ sqrt 5 < 2.2360679775 := by
+        constructor
+        · exact Real.sqrt_two_add_series_lower_bound 5 10
+        · exact Real.sqrt_two_add_series_upper_bound 5 10
+      norm_num [h_sqrt5.1, h_sqrt5.2]
 
 /-- All particles achieve reasonable accuracy -/
 theorem all_particles_reasonable_accuracy :
   ∀ particle ∈ ["e-", "mu-", "tau-", "W", "Z", "H"],
     relative_error particle < 0.5 := by
   intro particle h_mem
-  -- Verify each
-  sorry -- Remove with actual proofs
+  cases' h_mem with h h_rest
+  · -- particle = "e-"
+    simp [h]
+    exact electron_error_zero
+  · cases' h_rest with h h_rest
+    · -- particle = "mu-"
+      simp [h]
+      exact muon_high_accuracy
+    · cases' h_rest with h h_rest
+      · -- particle = "tau-"
+        simp [h]
+        unfold relative_error predicted_mass experimental_masses dressing_factor particle_rungs
+        -- Compute bounds showing tau error < 0.5
+        norm_num
+      · cases' h_rest with h h_rest
+        · -- particle = "W"
+          simp [h]
+          unfold relative_error predicted_mass experimental_masses dressing_factor particle_rungs
+          norm_num
+        · cases' h_rest with h h_rest
+          · -- particle = "Z"
+            simp [h]
+            unfold relative_error predicted_mass experimental_masses dressing_factor particle_rungs
+            norm_num
+          · cases' h_rest with h h_rest
+            · -- particle = "H"
+              simp [h]
+              unfold relative_error predicted_mass experimental_masses dressing_factor particle_rungs
+              norm_num
+            · -- Empty case
+              exfalso
+              exact h_rest
 
 /-!
 ## Status Summary
