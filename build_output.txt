@@ -1,0 +1,2 @@
+info: mathlib: updating repository '././.lake/packages/mathlib' to revision 'b5eba595428809e96f3ed113bc7ba776c5f801ac'
+error: external command 'git' exited with code 128
