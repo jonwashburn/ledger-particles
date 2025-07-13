@@ -12,9 +12,9 @@ Based on "Unifying Physics and Mathematics Through a Parameter-Free Recognition 
 by Jonathan Washburn.
 -/
 
-import Mathlib.Data.Real.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Tactic
+import Imports.Data.Real.Basic
+import Imports.Analysis.SpecialFunctions.Pow.Real
+import Imports.Tactic
 
 -- FOUNDATION IMPORTS: Self-contained foundation (no external dependencies)
 -- import RecognitionScience  -- Removed dependency

@@ -5,15 +5,15 @@
   Self-contained demonstration of the complete logical chain:
   Meta-Principle → Eight Foundations → Constants
 
-  Dependencies: Mathlib (for exact φ proof and Fin injectivity)
+  Dependencies: Vendored minimal functionality (no external dependencies)
 
   Author: Jonathan Washburn
   Recognition Science Institute
 -/
 
-import Mathlib.Data.Fintype.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic
+import Imports.Data.Fintype.Basic
+import Imports.Data.Real.Basic
+import Imports.Tactic
 
 set_option linter.unusedVariables false
 

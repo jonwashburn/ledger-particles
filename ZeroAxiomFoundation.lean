@@ -10,10 +10,10 @@ The goal is to prove that the framework requires ZERO axioms beyond
 Lean's built-in type theory.
 -/
 
-import Mathlib.Logic.Basic
-import Mathlib.Data.Nat.Basic
-import Mathlib.Data.Real.Basic
-import Mathlib.Tactic
+import Imports.Logic.Basic
+import Imports.Data.Nat.Basic
+import Imports.Data.Real.Basic
+import Imports.Tactic
 
 namespace ZeroAxiomFoundation
 
