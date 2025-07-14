@@ -44,3 +44,7 @@ lean_lib MinimalFoundation where
 
 lean_lib Particles where
   -- Particle physics applications
+
+-- Test integration
+lean_lib test_integration where
+  -- Integration tests for Recognition Science concepts
