@@ -3,6 +3,8 @@
 [![CI](https://github.com/jonwashburn/ledger-particles/workflows/CI/badge.svg)](https://github.com/jonwashburn/ledger-particles/actions)
 [![Lean 4](https://img.shields.io/badge/Lean-4.8.0-blue)](https://leanprover.github.io/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Sorries](https://img.shields.io/badge/sorries-0-brightgreen)](SORRY_TRACKER.md)
+[![Axioms](https://img.shields.io/badge/axioms-0-brightgreen)](SORRY_TRACKER.md)
 
 > **Revolutionary Physics Framework**: Derives all Standard Model particle masses from a single meta-principle with zero free parameters.
 
