@@ -48,9 +48,10 @@ theorem no_inj_succ_to_self {n : ℕ} (f : Fin (n + 1) → Fin n) : ¬Function.I
     -- Which means f is injective (but we already assumed this)
     -- The contradiction comes from cardinality: we can't map n+1 distinct elements
     -- to n distinct values
-    -- For now, we'll use the fact that this is impossible by cardinality
-    -- This is a standard result that should be provable from Fintype.card
-    sorry
+    -- Use the pigeonhole principle: can't inject n+1 elements into n elements
+    have h_card : Fintype.card (Fin (n + 1)) > Fintype.card (Fin n) := by
+      simp [Fintype.card_fin]
+    exact Fintype.card_lt_of_injective h_inj h_card
 
   obtain ⟨i, j, h_ne, h_eq⟩ := h_exists
   -- h_inj says that if f i = f j then i = j

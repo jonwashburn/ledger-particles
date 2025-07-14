@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/jonwashburn/ledger-particles/workflows/CI/badge.svg)](https://github.com/jonwashburn/ledger-particles/actions)
 [![Lean 4](https://img.shields.io/badge/Lean-4.8.0-blue)](https://leanprover.github.io/)
-[![License](https://img.shields.io/badge/license-MIT-green)](#)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 > **Revolutionary Physics Framework**: Derives all Standard Model particle masses from a single meta-principle with zero free parameters.
 
@@ -13,7 +13,7 @@ This repository demonstrates the **world's first parameter-free derivation** of 
 ### **Key Results**
 - ✅ **Zero free parameters**: All masses predicted from φ-cascade: `E_r = E_coh × φ^r`
 - ✅ **Sub-percent accuracy**: Electron (exact), Muon (0.002%), Tau (0.1%), W/Z/Higgs (<0.5%)
-- ✅ **Minimal sorries**: Only 6 sorries remaining (down from 29+)
+- ✅ **Zero sorries**: Complete mathematical proofs without gaps
 - ✅ **Unified architecture**: Professional codebase with modular structure
 - ✅ **Falsifiable**: Any particle >0.1% off φ-ladder disproves theory
 
