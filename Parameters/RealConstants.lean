@@ -12,8 +12,12 @@
 
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Real.Sqrt
+import Imports.Data.Real.Basic  -- Import our φ definitions
 
 namespace RecognitionScience.Constants
+
+-- Import the φ from the RecognitionScience namespace
+open RecognitionScience
 
 /-!
 ## Fundamental Constants
@@ -22,7 +26,8 @@ These are the core constants derived from the Recognition Science axioms.
 -/
 
 -- The golden ratio φ = (1 + √5)/2 ≈ 1.618
-noncomputable def φ : ℝ := (1 + Real.sqrt 5) / 2
+-- Use the definition from Imports.Data.Real.Basic
+-- (Already available as φ in RecognitionScience namespace)
 
 -- The coherence quantum in eV
 noncomputable def E_coh : ℝ := 0.090
@@ -39,47 +44,66 @@ noncomputable def c : ℝ := 299792458
 -- Reduced Planck constant in J⋅s
 noncomputable def h_bar : ℝ := 1.054571817e-34
 
--- Boltzmann constant in J/K
-noncomputable def k_B : ℝ := 1.380649e-23
+-- Electron volt to joule conversion
+noncomputable def eV_to_J : ℝ := 1.602176634e-19
 
--- CMB temperature in K
-noncomputable def T_CMB : ℝ := 2.725
-
--- Room temperature in K
-noncomputable def T_room : ℝ := 300
-
--- Fundamental length quantum in meters
-noncomputable def L₀ : ℝ := 3.35e-10
-
--- Conversion factor from eV to kg
-noncomputable def eV_to_kg : ℝ := 1.78266192e-36
+-- Electron volt to kg conversion (via E = mc²)
+noncomputable def eV_to_kg : ℝ := eV_to_J / (c ^ 2)
 
 /-!
-## Derived Functions
+## Energy Ladder
+
+The φ-cascade energy ladder for particle masses.
 -/
 
--- Energy at rung r
-noncomputable def E_at_rung (r : ℕ) : ℝ := E_coh * φ ^ r
+-- Energy at rung r in eV
+noncomputable def E_at_rung (r : ℕ) : ℝ := E_coh * (φ ^ r)
 
--- Mass at rung r (in kg)
+-- Mass at rung r in kg
 noncomputable def mass_at_rung (r : ℕ) : ℝ := E_at_rung r * eV_to_kg
 
 /-!
-## Properties (with sorry for now to get building)
+## Properties
 -/
 
-theorem φ_pos : φ > 0 := by sorry
+theorem φ_pos : φ > 0 := by
+  exact φ_positive
 
-theorem φ_gt_one : φ > 1 := by sorry
+theorem φ_gt_one : φ > 1 := by
+  -- φ ≈ 1.618 > 1 (use numerical bounds)
+  have h_bounds := φ_bounds
+  linarith [h_bounds.1]
 
-theorem E_coh_pos : E_coh > 0 := by sorry
+theorem E_coh_pos : E_coh > 0 := by
+  unfold E_coh
+  norm_num
 
-theorem τ₀_pos : τ₀ > 0 := by sorry
+theorem τ₀_pos : τ₀ > 0 := by
+  unfold τ₀
+  norm_num
 
-theorem c_pos : c > 0 := by sorry
+theorem c_pos : c > 0 := by
+  unfold c
+  norm_num
 
-theorem golden_ratio_property : φ ^ 2 = φ + 1 := by sorry
+theorem golden_ratio_property : φ ^ 2 = φ + 1 := by
+  exact φ_algebraic
 
-theorem φ_reciprocal : 1 / φ = φ - 1 := by sorry
+theorem φ_reciprocal : 1 / φ = φ - 1 := by
+  -- Use the golden ratio property φ² = φ + 1
+  -- Divide both sides by φ: φ = 1 + 1/φ
+  -- Rearrange: 1/φ = φ - 1
+  have h := φ_algebraic  -- φ² = φ + 1
+  have φ_pos := φ_positive
+  have φ_ne_zero : φ ≠ 0 := ne_of_gt φ_pos
+  -- From φ² = φ + 1, divide by φ to get φ = 1 + 1/φ
+  have h1 : φ = 1 + 1/φ := by
+    have : φ^2 / φ = (φ + 1) / φ := by rw [h]
+    rw [pow_two, mul_div_cancel_left_ne_zero φ_ne_zero] at this
+    rw [add_div] at this
+    rw [one_div] at this
+    exact this.symm
+  -- Rearrange to get 1/φ = φ - 1
+  linarith [h1]
 
 end RecognitionScience.Constants

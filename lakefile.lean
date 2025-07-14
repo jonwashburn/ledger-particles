@@ -3,7 +3,7 @@ open Lake DSL
 
 package particles where
   -- Recognition Science: Unified Architecture
-  -- Phase 3: Complete integration of all valuable modules
+  -- Core Mathematical Foundations
   -- Zero axioms, zero free parameters, sub-percent accuracy
 
 -- Essential dependencies only - no proofwidgets
@@ -39,12 +39,13 @@ lean_lib RecognitionScience where
 lean_lib ZeroAxiomFoundation where
   -- Zero-axiom mathematical foundation
 
-lean_lib MinimalFoundation where
-  -- Minimal foundation implementation
+-- Additional targets
+lean_lib Fintype where
+  -- Finite type theory
 
 lean_lib Particles where
   -- Particle physics applications
 
--- Test integration
-lean_lib test_integration where
-  -- Integration tests for Recognition Science concepts
+-- Integration testing
+lean_exe test_integration where
+  root := `test_integration

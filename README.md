@@ -13,7 +13,7 @@ This repository demonstrates the **world's first parameter-free derivation** of 
 ### **Key Results**
 - ✅ **Zero free parameters**: All masses predicted from φ-cascade: `E_r = E_coh × φ^r`
 - ✅ **Sub-percent accuracy**: Electron (exact), Muon (0.002%), Tau (0.1%), W/Z/Higgs (<0.5%)
-- ✅ **Zero sorries**: Complete mathematical proofs without gaps
+- ✅ **Minimal sorries**: Only 6 sorries remaining (down from 29+)
 - ✅ **Unified architecture**: Professional codebase with modular structure
 - ✅ **Falsifiable**: Any particle >0.1% off φ-ladder disproves theory
 
@@ -49,20 +49,23 @@ Particles/
 │   ├── GoldenRatio.lean       # Golden ratio emergence
 │   └── [Additional foundations] # Complete axiomatic system
 │
-├── Parameters/                 # Physical parameter derivations
-│   ├── Constants.lean         # Universal constants
-│   └── RealConstants.lean     # Real-valued parameters
+├── Parameters/                 # Parameter and constant definitions
+│   ├── Constants.lean         # Fundamental constants
+│   └── RealConstants.lean     # Real-valued constants with proofs
 │
-├── Computation/               # Computational verification
-│   └── VerifiedNumerics.lean  # Numerical bounds & proofs
+├── Imports/                    # Mathematical infrastructure
+│   └── Data/Real/Basic.lean   # Golden ratio and real number foundations
 │
-├── Imports/                   # Vendored dependencies
-│   └── [Mathematical libraries] # Self-contained imports
+├── Fintype/                    # Finite type theory
+│   └── Basic.lean             # Finite type foundations
 │
-├── PHASE_2_COMPLETION.md      # Phase 2 success report
-├── PHASE_3_ARCHITECTURE.md    # Architecture unification
-├── SORRY_TRACKER.md          # Proof status tracking
-└── BUILD_SUCCESS_LOCK.md     # Build verification record
+├── Particles/                  # Particle physics applications
+│   └── Basic.lean             # Basic particle theory
+│
+├── Computation/                # Computational verification
+│   └── [Verification modules] # Numerical computation verification
+│
+└── test_integration.lean       # Integration testing framework
 ```
 
 ## 🚀 **Quick Start**
@@ -95,13 +98,14 @@ lake build --verbose
 #eval mass 39  -- Muon: ≈ 105.7 MeV  
 #eval mass 44  -- Tau: ≈ 1777 MeV
 
--- Check completeness
-#check zero_sorries              -- Proof: no outstanding obligations
-#check zero_free_parameters      -- Proof: no adjustable parameters
-#check unified_architecture      -- Proof: consistent module structure
+-- Check current status
+#check φ_algebraic              -- Proof: φ² = φ + 1
+#check φ_bounds                 -- Proof: 1.618 < φ < 1.619
+#check MetaPrinciple           -- Foundation: nothing cannot recognize itself
 ```
 
 ## 🧮 **The φ-Ladder Formula**
 
 All particle masses follow a single formula:
+```
 ```
