@@ -3,12 +3,12 @@ Minimal Logic.Basic for Recognition Science
 Based on Mathlib but self-contained to avoid dependency issues
 -/
 
--- Basic logical operations and tactics
-variable {α β γ : Sort*}
+-- Import from Mathlib instead of redefining
+import Mathlib.Logic.Basic
+import Mathlib.Logic.Function.Basic
 
--- Function composition and identity
-def Function.comp (g : β → γ) (f : α → β) : α → γ := fun a => g (f a)
-def Function.id : α → α := fun a => a
+-- Re-export what we need
+open Function
 
 -- Basic logical lemmas
 theorem not_not_iff (a : Prop) : ¬¬a ↔ a := by
