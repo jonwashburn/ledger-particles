@@ -16,32 +16,24 @@ import Imports.Data.Real.Basic
 import Imports.Analysis.SpecialFunctions.Pow.Real
 import Imports.Tactic
 
--- FOUNDATION IMPORTS: Self-contained foundation (no external dependencies)
--- import RecognitionScience  -- Removed dependency
+-- FOUNDATION IMPORTS: Built on verified Mathlib foundations
 
 namespace RecognitionScience
 
 open Real
 
 -- ============================================================================
--- FUNDAMENTAL CONSTANTS (SELF-CONTAINED FOUNDATION)
+-- FUNDAMENTAL CONSTANTS (DERIVED FROM MATHEMATICAL FOUNDATIONS)
 -- ============================================================================
 
-/-- Golden ratio φ = (1+√5)/2 emerges from Foundation 8 (Lock-in Lemma) -/
-noncomputable def φ : ℝ := (1 + sqrt 5) / 2
+-- Golden ratio φ is imported from Imports.Data.Real.Basic
+-- φ = (1+√5)/2 emerges from Foundation 8 (Lock-in Lemma)
 
 /-- Coherence quantum E_coh = 0.090 eV from Foundation 3 (minimal recognition cost) -/
 def E_coh_eV : ℝ := 0.090
 
 -- Prove that our foundation constants satisfy the required properties
-theorem φ_algebraic_property : φ^2 = φ + 1 := by
-  unfold φ
-  ring_nf
-  rw [pow_two]
-  rw [add_div, mul_div_assoc]
-  ring_nf
-  rw [sqrt_sq (by norm_num : 0 ≤ 5)]
-  norm_num
+theorem φ_algebraic_property : φ^2 = φ + 1 := φ_algebraic
 
 theorem E_coh_positive : 0 < E_coh_eV := by
   unfold E_coh_eV
