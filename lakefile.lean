@@ -3,14 +3,14 @@ open Lake DSL
 
 package particles where
   -- Recognition Science: Parameter-Free Particle Mass Derivation
-  -- Phase 1: Demonstrate build system works (Mathlib to be added back in Phase 2)
+  -- Phase 2: Adding Mathlib support for complete mathematical proofs
   -- Zero axioms, zero free parameters, sub-percent accuracy
 
--- Temporarily avoiding Mathlib due to proofwidgets conflicts on macOS
--- Will restore in Phase 2 once core build issues are resolved
+require mathlib from git
+  "https://github.com/leanprover-community/mathlib4.git"
 
 lean_lib Imports where
-  -- Mathematical infrastructure for Recognition Science
+  -- Mathematical infrastructure based on verified Mathlib
 
 lean_lib ParticleMasses where
   -- Main library for particle mass calculations from φ-cascade
@@ -23,6 +23,9 @@ lean_lib ZeroAxiomFoundation where
 
 lean_lib MinimalFoundation where
   -- Minimal foundation providing the eight foundations
+
+lean_lib Computation where
+  -- Verified numerical computations and proofs
 
 lean_lib Core where
   -- Core Recognition Science modules

@@ -1,27 +1,59 @@
 /-
 Recognition Science Real Number Foundations
-Phase 1: Minimal demonstration that circular imports are fixed
+Based on verified Mathlib infrastructure
 -/
+
+import Mathlib.Data.Real.Basic
+import Mathlib.Data.Real.Sqrt
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 namespace RecognitionScience
 
--- Demonstrate that we can define φ without circular imports
--- Using only basic Lean 4 operations to prove the build system works
-noncomputable def φ : ℝ := (1 + Real.sqrt 5) / 2
+open Real
 
--- Basic property to demonstrate the definition works
+-- Golden ratio (core Recognition Science constant)
+noncomputable def φ : ℝ := (1 + sqrt 5) / 2
+
+-- Mathematical properties required for Recognition Science
 theorem φ_positive : φ > 0 := by
-  -- For Phase 1, we just need to show this compiles
-  sorry
+  unfold φ
+  apply div_pos
+  · apply add_pos
+    · norm_num
+    · exact sqrt_pos_of_pos (by norm_num : (0 : ℝ) < 5)
+  · norm_num
 
--- Key algebraic property
 theorem φ_algebraic : φ ^ 2 = φ + 1 := by
-  -- For Phase 1, we just need to show this compiles
-  sorry
+  unfold φ
+  field_simp
+  ring_nf
+  rw [← pow_two]
+  ring_nf
+  rw [sqrt_sq (by norm_num : (0 : ℝ) ≤ 5)]
+  ring
 
--- This file demonstrates that:
--- 1. We can define φ without circular dependency errors
--- 2. The build system accepts our definitions
--- 3. We're ready to add proper Mathlib support in Phase 2
+-- Basic bounds for computational verification
+theorem φ_bounds : (1.618 : ℝ) < φ ∧ φ < (1.619 : ℝ) := by
+  constructor
+  · unfold φ
+    norm_num
+    -- sqrt 5 ≈ 2.236067977..., so (1 + sqrt 5)/2 ≈ 1.618033988...
+    have h : sqrt 5 > 2.236 := by
+      rw [← sqrt_lt_iff (by norm_num : (0 : ℝ) ≤ 5) (by norm_num : (0 : ℝ) < 2.236)]
+      norm_num
+    linarith
+  · unfold φ
+    norm_num
+    -- sqrt 5 < 2.237, so (1 + sqrt 5)/2 < 1.6185
+    have h : sqrt 5 < 2.237 := by
+      rw [sqrt_lt_iff (by norm_num : (0 : ℝ) ≤ 5) (by norm_num : (0 : ℝ) < 2.237)]
+      norm_num
+    linarith
+
+-- Export key properties with clean names
+theorem φ_pos : φ > 0 := φ_positive
+theorem φ_gt_one : φ > 1 := by
+  have := φ_bounds.1
+  linarith
 
 end RecognitionScience
