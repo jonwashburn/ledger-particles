@@ -6,6 +6,7 @@ package particles where
   -- Phase 3: Complete integration of all valuable modules
   -- Zero axioms, zero free parameters, sub-percent accuracy
 
+-- Essential dependencies only - no proofwidgets
 require mathlib from git
   "https://github.com/leanprover-community/mathlib4.git"
 
