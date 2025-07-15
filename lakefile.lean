@@ -8,7 +8,10 @@ package particles where
 
 -- Essential dependencies only - no proofwidgets
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4.git"
+  "https://github.com/leanprover-community/mathlib4.git" @ "v4.11.0"
+
+require RecognitionScience from git
+  "https://github.com/jonwashburn/ledger-foundation" @ "main"
 
 -- Mathematical infrastructure
 lean_lib Imports where
@@ -32,9 +35,6 @@ lean_lib Parameters where
 -- Main libraries
 lean_lib ParticleMasses where
   -- Particle mass predictions from φ-cascade
-
-lean_lib RecognitionScience where
-  -- Main framework and theory
 
 lean_lib ZeroAxiomFoundation where
   -- Zero-axiom mathematical foundation
